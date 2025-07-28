@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DotnetApi.Controllers
 {
@@ -45,7 +46,32 @@ namespace DotnetApi.Controllers
             if (!result.Succeeded) return Unauthorized("Invalid credentials");
 
             var token = GenerateJwtToken(user);
+
+            Response.Cookies.Append("jwt", token, new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = false, // only with HTTPS
+                SameSite = SameSiteMode.Strict,
+                Expires = DateTime.UtcNow.AddHours(1)
+            });
+
+            //return Ok(new { message = "Logged in successfully" });
+
             return Ok(new { token });
+        }
+
+        [HttpPost("logout")]
+        public IActionResult Logout()
+        {
+            Response.Cookies.Delete("jwt");
+            return Ok(new { message = "Logged out" });
+        }
+
+        [Authorize]
+        [HttpGet("me")]
+        public IActionResult Me()
+        {
+            return Ok(new { username = User.Identity.Name });
         }
 
         private string GenerateJwtToken(ApplicationUser user)
