@@ -101,3 +101,8 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
+app.MapFallbackToFile("index.html");
