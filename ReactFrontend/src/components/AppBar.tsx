@@ -16,6 +16,8 @@ const AppBar: React.FC = () => {
         <Link to="/" className="hover:text-blue-400">Home</Link>
         <Link to="/about" className="hover:text-blue-400">About</Link>
         <Link to="/contact" className="hover:text-blue-400">Contact</Link>
+        <Link to="/imagetotext" className="hover:text-blue-400">Extraction</Link>
+        <Link to="/pricing" className="hover:text-blue-400">Pricing</Link>
       {!user && (
             <div className="hidden md:flex space-x-4">
               <Link to="/login" className="hover:text-blue-400">Login</Link>

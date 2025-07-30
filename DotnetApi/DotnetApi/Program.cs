@@ -1,6 +1,10 @@
 using System.Text;
 using DotnetApi.Contexts;
 using DotnetApi.Models;
+using DotnetApi.Repositories.Interfaces;
+using DotnetApi.Repositories;
+using DotnetApi.Services.Interfaces;
+using DotnetApi.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -64,6 +68,9 @@ builder.Services.AddCors(options =>
         });
 });
 
+
+builder.Services.AddScoped<IOcrService, OcrService>();
+builder.Services.AddScoped<IOcrRepository, OcrRepository>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -81,6 +88,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseRouting();
+
 
 app.UseCors("AllowFrontend");
 

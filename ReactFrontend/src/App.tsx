@@ -7,6 +7,8 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Register from './pages/Register';
 import Login from './pages/Login';
+import ImageToText from './pages/ImageToText';
+import Pricing from './pages/Pricing';
 
 function App() {
 
@@ -20,6 +22,8 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/imagetotext" element={<ImageToText />} />
+          <Route path="/pricing" element={<Pricing />} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>
