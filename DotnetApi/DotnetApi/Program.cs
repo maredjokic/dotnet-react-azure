@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using DotnetApi.Repositories.Interfaces.DotnetApi.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -68,10 +69,14 @@ builder.Services.AddCors(options =>
         });
 });
 
-
+builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IOcrService, OcrService>();
 builder.Services.AddScoped<IOcrRepository, OcrRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IAuthService, AuthService>();
+
 builder.Services.AddControllers();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
