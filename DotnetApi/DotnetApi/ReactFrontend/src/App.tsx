@@ -9,6 +9,7 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import ImageToText from './pages/ImageToText';
 import Pricing from './pages/Pricing';
+import Support from './pages/Support';
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/imagetotext" element={<ImageToText />} />
           <Route path="/pricing" element={<Pricing />} />
+          <Route path="/support" element={<Support />} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>
