@@ -51,8 +51,6 @@ const AppBar: React.FC = () => {
 
           {/* Links */}
           <Link to="/" className="hover:text-blue-500 transition-colors">Home</Link>
-          <Link to="/about" className="hover:text-blue-500 transition-colors">About</Link>
-          <Link to="/contact" className="hover:text-blue-500 transition-colors">Contact</Link>
           <Link to="/imagetotext" className="hover:text-blue-500 transition-colors">Extraction</Link>
           <Link to="/pricing" className="hover:text-blue-500 transition-colors">Pricing</Link>
           <Link to="/support" className="hover:text-blue-500 transition-colors">Support us</Link>

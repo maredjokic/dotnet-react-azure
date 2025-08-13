@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { api } from "./../lib/api";
+import { api } from "../lib/api";
 
 export default function Register() {
   const [email, setEmail] = useState("");
@@ -17,39 +17,39 @@ export default function Register() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-950">
+    <div className="flex items-center justify-center min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
       <form
         onSubmit={handleRegister}
-        className="bg-gray-900 p-8 rounded-2xl shadow-lg w-full max-w-md space-y-6"
+        className="bg-gray-100 dark:bg-gray-800 p-8 rounded-2xl shadow-lg w-full max-w-md space-y-6 transition-colors duration-300"
       >
-        <h2 className="text-2xl font-bold text-center text-gray-100">Register</h2>
+        <h2 className="text-2xl font-bold text-center text-gray-900 dark:text-gray-100">Register</h2>
         
         <div>
-          <label className="block text-gray-300 mb-1" htmlFor="email">Email</label>
+          <label className="block text-gray-700 dark:text-gray-300 mb-1" htmlFor="email">Email</label>
           <input
             id="email"
             value={email}
             onChange={e => setEmail(e.target.value)}
             placeholder="Enter your email"
-            className="w-full px-4 py-2 border border-gray-700 bg-gray-800 text-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300"
           />
         </div>
 
         <div>
-          <label className="block text-gray-300 mb-1" htmlFor="password">Password</label>
+          <label className="block text-gray-700 dark:text-gray-300 mb-1" htmlFor="password">Password</label>
           <input
             id="password"
             value={password}
             type="password"
             onChange={e => setPassword(e.target.value)}
             placeholder="Enter your password"
-            className="w-full px-4 py-2 border border-gray-700 bg-gray-800 text-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300"
           />
         </div>
 
         <button
           type="submit"
-          className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
+          className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors duration-300"
         >
           Register
         </button>
