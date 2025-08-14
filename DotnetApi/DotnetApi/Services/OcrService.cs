@@ -1,6 +1,7 @@
 ﻿using DotnetApi.Models;
 using DotnetApi.Services.Interfaces;
-using Tesseract;
+using Microsoft.AspNetCore.Hosting;
+using System.Diagnostics;
 
 public class OcrService : IOcrService
 {
@@ -8,32 +9,43 @@ public class OcrService : IOcrService
 
     public OcrService(IWebHostEnvironment env)
     {
-        //if (env.IsDevelopment())
-        //{
-        //    _tessDataPath = Path.Combine(Directory.GetCurrentDirectory(), "tessdata");
-        //}
-        //else
-        //{
-            _tessDataPath = "/home/site/wwwroot/tessdata";
-        //}
+        _tessDataPath = "/home/site/wwwroot/tessdata";
     }
 
     public async Task<OcrResultDto> ExtractTextAsync(Stream imageStream, string language)
     {
-        var imageBytes = await ReadFullyAsync(imageStream);
+        var tempFile = Path.GetTempFileName() + ".png";
+        await using (var fs = new FileStream(tempFile, FileMode.Create))
+        {
+            await imageStream.CopyToAsync(fs);
+        }
 
-        using var engine = new TesseractEngine(_tessDataPath, language, EngineMode.Default);
-        using var img = Pix.LoadFromMemory(imageBytes);
-        using var page = engine.Process(img);
+        var outputFile = Path.GetTempFileName();
 
-        var text = page.GetText();
+        var psi = new ProcessStartInfo
+        {
+            FileName = "tesseract",
+            Arguments = $"{tempFile} {outputFile} -l {language} --tessdata-dir {_tessDataPath}",
+            RedirectStandardOutput = true,
+            RedirectStandardError = true,
+            UseShellExecute = false,
+            CreateNoWindow = true
+        };
+
+        using var process = Process.Start(psi);
+        await process.WaitForExitAsync();
+
+        var error = await process.StandardError.ReadToEndAsync();
+        if (!string.IsNullOrEmpty(error))
+        {
+            throw new Exception($"Tesseract error: {error}");
+        }
+
+        var text = await File.ReadAllTextAsync(outputFile + ".txt");
+
+        File.Delete(tempFile);
+        File.Delete(outputFile + ".txt");
+
         return new OcrResultDto { Text = text };
-    }
-
-    private async Task<byte[]> ReadFullyAsync(Stream input)
-    {
-        using var ms = new MemoryStream();
-        await input.CopyToAsync(ms);
-        return ms.ToArray();
     }
 }
