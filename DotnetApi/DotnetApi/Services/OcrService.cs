@@ -8,14 +8,14 @@ public class OcrService : IOcrService
 
     public OcrService(IWebHostEnvironment env)
     {
-        if (env.IsDevelopment())
-        {
-            _tessDataPath = Path.Combine(Directory.GetCurrentDirectory(), "tessdata");
-        }
-        else
-        {
+        //if (env.IsDevelopment())
+        //{
+        //    _tessDataPath = Path.Combine(Directory.GetCurrentDirectory(), "tessdata");
+        //}
+        //else
+        //{
             _tessDataPath = "/home/site/wwwroot/tessdata";
-        }
+        //}
     }
 
     public async Task<OcrResultDto> ExtractTextAsync(Stream imageStream, string language)
