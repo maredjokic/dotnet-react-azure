@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DotnetApi.Controllers
 {
-    [Authorize]
     [ApiController]
     [Route("[controller]")]
     //[RequiredScope(RequiredScopesConfigurationKey = "AzureAd:Scopes")]

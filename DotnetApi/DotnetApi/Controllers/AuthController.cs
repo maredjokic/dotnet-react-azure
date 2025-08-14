@@ -1,4 +1,5 @@
-﻿using DotnetApi.Models;
+﻿using System.Security.Claims;
+using DotnetApi.Models;
 using DotnetApi.Services;
 using DotnetApi.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -74,7 +75,11 @@ namespace DotnetApi.Controllers
         [ProducesResponseType(typeof(object), StatusCodes.Status200OK)]
         public IActionResult Me()
         {
-            return Ok(new { username = User.Identity?.Name });
+
+            var email = User.FindFirstValue(ClaimTypes.Email);
+
+            return Ok(new { email });
+            //return Ok(new { username = User.Identity?.Name });
         }
     }
 }
