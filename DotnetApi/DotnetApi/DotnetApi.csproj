@@ -33,4 +33,9 @@
 	</Content>
 </ItemGroup>
 
+<ItemGroup>
+	<None Include="startup.sh">
+		<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	</None>
+</ItemGroup>
 </Project>
