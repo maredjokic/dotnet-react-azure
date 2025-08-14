@@ -6,7 +6,21 @@ namespace DotnetApi.Services
 {
     public class OcrService : IOcrService
     {
-        private readonly string _tessDataPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "tessdata");//Directory.GetCurrentDirectory(), "tessdata");
+        private readonly string _tessDataPath;
+
+        public OcrService()
+        {
+            var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
+            if (env == "Development")
+            {
+                _tessDataPath = Path.Combine(Directory.GetCurrentDirectory(), "tessdata");
+            }
+            else
+            {
+                _tessDataPath = "/home/site/wwwroot/tessdata";
+            }
+        }
 
         public async Task<OcrResultDto> ExtractTextAsync(Stream imageStream, string language)
         {
