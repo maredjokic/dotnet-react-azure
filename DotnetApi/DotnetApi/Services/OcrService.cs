@@ -38,7 +38,14 @@ public class OcrService : IOcrService
         var error = await process.StandardError.ReadToEndAsync();
         if (!string.IsNullOrEmpty(error))
         {
-            throw new Exception($"Tesseract error: {error}");
+            if (!error.ToLower().Contains("error"))
+            {
+                Console.WriteLine($"Tesseract warning: {error}");
+            }
+            else
+            {
+                throw new Exception($"Tesseract error: {error}");
+            }
         }
 
         var text = await File.ReadAllTextAsync(outputFile + ".txt");
