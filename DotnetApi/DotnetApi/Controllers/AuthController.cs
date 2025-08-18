@@ -13,11 +13,13 @@ namespace DotnetApi.Controllers
     {
         private readonly IAuthService _authService;
         private readonly IWebHostEnvironment _env;
+        private readonly ILogger<AuthController> _logger;
 
-        public AuthController(IAuthService authService, IWebHostEnvironment env)
+        public AuthController(IAuthService authService, IWebHostEnvironment env, ILogger<AuthController> logger)
         {
             _authService = authService;
             _env = env;
+            _logger = logger;
         }
 
         [HttpPost("register")]
@@ -25,6 +27,7 @@ namespace DotnetApi.Controllers
         [ProducesResponseType(typeof(IEnumerable<string>), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Register([FromBody] RegisterDto model)
         {
+            _logger.LogInformation("Register");
             var result = await _authService.RegisterAsync(model);
 
             if (!result.Success)
@@ -46,6 +49,7 @@ namespace DotnetApi.Controllers
         [ProducesResponseType(typeof(object), StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> Login([FromBody] LoginDto model)
         {
+            _logger.LogInformation("Login");
             var result = await _authService.LoginAsync(model);
 
             if (!result.Success)
@@ -66,6 +70,7 @@ namespace DotnetApi.Controllers
         [ProducesResponseType(typeof(object), StatusCodes.Status200OK)]
         public IActionResult Logout()
         {
+            _logger.LogInformation("Logout");
             Response.Cookies.Delete("jwt");
             return Ok(new { message = "Logged out" });
         }
@@ -75,7 +80,7 @@ namespace DotnetApi.Controllers
         [ProducesResponseType(typeof(object), StatusCodes.Status200OK)]
         public IActionResult Me()
         {
-
+            _logger.LogInformation("Check");
             var email = User.FindFirstValue(ClaimTypes.Email);
 
             return Ok(new { email });
