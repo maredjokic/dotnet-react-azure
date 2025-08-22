@@ -21,9 +21,9 @@ const Home: React.FC = () => (
     {/* Kontakt */}
     <section className="mt-auto border-t border-gray-300 dark:border-gray-700 pt-4">
       <h2 className="text-2xl font-semibold mb-2">Contact</h2>
-      <p>Email: <a href="mailto:marko@example.com" className="text-blue-600 dark:text-blue-400">marko@example.com</a></p>
-      <p>Phone: <a href="tel:+381601234567" className="text-blue-600 dark:text-blue-400">+381 60 123 4567</a></p>
-      <p>Website: <a href="https://www.example.com" className="text-blue-600 dark:text-blue-400">www.example.com</a></p>
+      <p>Email: <a href="mailto:marko.djokic.contact@gmail.com" className="text-blue-600 dark:text-blue-400">marko@example.com</a></p>
+      <p>Phone: <a href="tel:+381644402202" className="text-blue-600 dark:text-blue-400">+381 60 123 4567</a></p>
+      <p>Website: <a href="https://www.maretech.dev" className="text-blue-600 dark:text-blue-400">www.example.com</a></p>
     </section>
   </div>
 );
