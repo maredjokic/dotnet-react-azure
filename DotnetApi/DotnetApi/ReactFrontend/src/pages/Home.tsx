@@ -7,7 +7,6 @@ const Home: React.FC = () => (
 
     {/* O aplikaciji */}
     <section className="mb-8">
-      <h2 className="text-2xl font-semibold mb-2">About the App</h2>
       <p className="mb-2">
         Our service allows you to easily extract text from images, PDFs, and other documents.
         Just upload your file and get clean, editable text instantly.
