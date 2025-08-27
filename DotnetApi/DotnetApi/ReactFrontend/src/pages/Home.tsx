@@ -20,9 +20,9 @@ const Home: React.FC = () => (
     {/* Kontakt */}
     <section className="mt-auto border-t border-gray-300 dark:border-gray-700 pt-4">
       <h2 className="text-2xl font-semibold mb-2">Contact</h2>
-      <p>Email: <a href="mailto:marko.djokic.contact@gmail.com" className="text-blue-600 dark:text-blue-400">marko@example.com</a></p>
-      <p>Phone: <a href="tel:+381644402202" className="text-blue-600 dark:text-blue-400">+381 60 123 4567</a></p>
-      <p>Website: <a href="https://www.maretechdev.vercel.app" className="text-blue-600 dark:text-blue-400">www.example.com</a></p>
+      <p>Email: <a href="mailto:marko.djokic.contact@gmail.com" className="text-blue-600 dark:text-blue-400">marko.djokic.contact@gmail.com</a></p>
+      <p>Phone: <a href="tel:+381644402202" className="text-blue-600 dark:text-blue-400">+381 64 440 22 02</a></p>
+      <p>Website: <a href="https://www.maretechdev.vercel.app" className="text-blue-600 dark:text-blue-400">https://www.maretechdev.vercel.app</a></p>
     </section>
   </div>
 );
