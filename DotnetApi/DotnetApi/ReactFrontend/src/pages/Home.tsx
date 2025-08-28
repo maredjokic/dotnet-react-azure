@@ -5,18 +5,6 @@ const Home: React.FC = () => (
     {/* Naslov */}
     <h1 className="text-4xl font-bold mb-6">Welcome to Text Extractor Service</h1>
 
-    {/* O aplikaciji */}
-    <section className="mb-8">
-      <p className="mb-2">
-        Our service allows you to easily extract text from images, PDFs, and other documents.
-        Just upload your file and get clean, editable text instantly.
-      </p>
-      <p>
-        We support multiple formats, and our goal is to make text extraction fast, accurate, 
-        and user-friendly.
-      </p>
-    </section>
-
     {/* Kontakt */}
     <section className="mt-auto border-t border-gray-300 dark:border-gray-700 pt-4">
       <h2 className="text-2xl font-semibold mb-2">Contact</h2>
